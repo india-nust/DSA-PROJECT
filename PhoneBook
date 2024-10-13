@@ -1,0 +1,44 @@
+import java.util.Scanner;
+class Contact {
+    String name;
+    String phoneNumber;
+    Contact next; 
+
+    public Contact(String name, String phoneNumber) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.next = null; 
+    }
+
+    
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Phone Number: " + phoneNumber;
+    }
+}
+
+public class Phonebook {
+    private Contact head;
+
+    public Phonebook() {
+        head = null;
+    }
+
+    public void insertContact(String name, String phoneNumber) {
+        if (searchContact(name) != null) {
+            System.out.println("Contact already exists.");
+            return;
+        }
+
+        Contact newContact = new Contact(name, phoneNumber);
+        if (head == null) {
+            head = newContact; 
+        } else {
+            Contact current = head;
+            while (current.next != null) {
+                current = current.next; 
+            }
+            current.next = newContact; 
+        }
+        System.out.println("Contact added: " + name);
+    }
